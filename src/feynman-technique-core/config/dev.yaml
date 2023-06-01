@@ -1,0 +1,29 @@
+# password in main computer: ft-backend_0#1dev
+# database in main computer: ft_backend
+
+database:
+  host: 'localhost'
+  user: 'root'
+  password: 'Estonia1998#6'
+  name: 'ft_backend_dev'
+  auth_plugin: 'mysql_native_password'
+
+logger:
+  name: 'FTApp'
+
+paths:
+  log_path: 'src/logs'
+  log_filename: 'log'
+
+sql_alchemy:
+  database_uri: 'mysql+pymysql://root:Estonia1998#6@localhost/ft_backend_dev'
+  track_modifications: False
+  cors_headers: 'Content-Type'
+
+scraper:
+  path: '../feynman-technique-chatbot/scraper/input.js'
+  prog_env: 'node'
+
+session:
+  session_permament: False
+  session_type: 'filesystem'
