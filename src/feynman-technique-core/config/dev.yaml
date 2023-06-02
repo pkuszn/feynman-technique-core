@@ -1,6 +1,3 @@
-# password in main computer: ft-backend_0#1dev
-# database in main computer: ft_backend
-
 database:
   host: 'localhost'
   user: 'root'
