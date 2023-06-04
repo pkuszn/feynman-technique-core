@@ -46,3 +46,9 @@ class WordPresentationDto:
     created_date: str
     context: str
     link: str
+
+@dataclass
+class SpecifiedWordDto:
+    name: str
+    lemma: str
+    part_of_speech: int

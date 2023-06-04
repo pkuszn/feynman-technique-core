@@ -1,14 +1,14 @@
 import random
 import string
 import time
-from fastapi import FastAPI, Request
 import logging
+from fastapi import FastAPI, Request, status
 from db_connector import load_words
-
+from processor import process_part_of_speech
+from models import Words
 
 logging.config.fileConfig("config/logging.conf", disable_existing_loggers=False)
 logger = logging.getLogger("ftcore")
-
 
 app = FastAPI()
 
@@ -25,26 +25,31 @@ async def log_requests(request: Request, call_next):
 
     return response
 
-@app.get("/")
-async def home():
+@app.get("/analyze/words", status_code=status.HTTP_200_OK)
+async def analyze_words_async():
     logger.info("Test logger")
     words = await load_words()
     for word in words:
         logger.info(word)
     return words
 
-@app.get("/analyze")
-def analyze():
-    return None
+@app.get("/analyze/test", status_code=status.HTTP_200_OK)
+async def analyze_test_async():
+    logger.info("Test logger")
+    words = await load_words()
+    for word in words:
+        logger.info(word)
+    return words
 
-@app.get("analyze-test")
-def analyze_test():
-    return None
-
-@app.get("analyze-raw")
-def analyze_raw():
-    return None
-
-@app.get("authenticate")
-def authenticate():
-    return None
+#TODO: not working
+@app.post("analyze/part_of_speech", status_code=status.HTTP_201_CREATED)
+async def analyze_part_of_speech_async(words: Words):
+    logger.info("preparing to analyze given words")
+    if len(words) <= 0:
+        return status.HTTP_204_NO_CONTENT
+    
+    processed_list = process_part_of_speech(words)
+    if len(processed_list) <= 0:
+        return status.HTTP_204_NO_CONTENT
+    
+    return processed_list

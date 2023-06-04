@@ -24,3 +24,6 @@ class User(BaseModel):
 class Role(BaseModel):
     id: int
     name: str
+
+class Words(BaseModel):
+    words: list
