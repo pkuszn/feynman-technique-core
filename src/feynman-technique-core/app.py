@@ -26,9 +26,9 @@ async def log_requests(request: Request, call_next):
     return response
 
 @app.get("/")
-def home():
+async def home():
     logger.info("Test logger")
-    words = load_words()
+    words = await load_words()
     for word in words:
         logger.info(word)
     return words

@@ -11,5 +11,7 @@ db = MySQLdb.connect(
 
 async def load_words():
     cursor = db.cursor()
-    cursor.execute("""SELECT * from words""")
-    return cursor.fetchone()
+    cursor.execute("""SELECT word from word""")
+    list = cursor.fetchall()
+    flat_list = [item for sublist in list for item in sublist]
+    return flat_list

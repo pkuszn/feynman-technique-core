@@ -3,7 +3,7 @@ import yaml
 import pathlib
 from copy import deepcopy
 
-def load_config(mode=os.environ.get('FLASK_ENV')):
+def load_config(mode="DEVELOPMENT"):
     path = pathlib.Path(__file__).parent
     try:
         match mode:
