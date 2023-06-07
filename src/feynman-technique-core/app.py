@@ -2,7 +2,6 @@ import random
 import string
 import time
 import logging
-import json
 from db_connector import load_words
 from fastapi import FastAPI, Request, status
 from processor import process_part_of_speech
@@ -41,12 +40,12 @@ async def analyze_test_async():
     return words
 
 @app.post("/analyze/speeches", status_code=status.HTTP_201_CREATED)
-async def analyze_part_of_speech_async(words: Words):
+async def analyze_part_of_speech_async(words: list):
     logger.info("preparing to analyze given words")
-    if len(words.wordList) <= 0:
+    if len(words) <= 0:
         return status.HTTP_204_NO_CONTENT
     
-    processed_list = process_part_of_speech(words.wordList)
+    processed_list = process_part_of_speech(words)
     if len(processed_list) <= 0:
         return status.HTTP_204_NO_CONTENT
     
