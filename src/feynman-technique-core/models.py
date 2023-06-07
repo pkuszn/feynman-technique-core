@@ -26,4 +26,4 @@ class Role(BaseModel):
     name: str
 
 class Words(BaseModel):
-    words: list
+    wordList: list

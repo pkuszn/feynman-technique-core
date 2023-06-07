@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict, field
+from json import dumps
 
 class Token:
     __slots__ = ["internal_id", "text", "lemma", "upos", "head", "deprel", "feats", "status", "complex", "root", "child"]
@@ -47,8 +48,33 @@ class WordPresentationDto:
     context: str
     link: str
 
+    @property
+    def __dict__(self):
+        return asdict(self)
+    
+    @property
+    def json(self):
+        return dumps(self.__dict__)
+    
+    @property
+    def __str__(self):
+        return f"{self.id}, {self.word}, {self.part_of_speech}, {self.part_of_speech_name}, {self.created_date}, {self.context}, {self.link}"
+
+
 @dataclass
-class SpecifiedWordDto:
+class DetailedWordDto:
     name: str
     lemma: str
     part_of_speech: int
+
+    @property
+    def __dict__(self):
+        return asdict(self)
+    
+    @property
+    def json(self):
+        return dumps(self.__dict__)
+    
+    @property
+    def __str__(self):
+        return f"{self.name}, {self.lemma}, {self.part_of_speech}"

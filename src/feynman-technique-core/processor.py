@@ -1,5 +1,5 @@
 from trankit import Pipeline
-from dtos import SpecifiedWordDto
+from dtos import DetailedWordDto
 
 pipeline = Pipeline(lang='polish', gpu=True, cache_dir='./cache')
 
@@ -8,7 +8,7 @@ def process_part_of_speech(words: list):
         processed_list = []
         list = pipeline(words, is_sent=True)
         for token in list['tokens']:
-            processed_list.append(SpecifiedWordDto(
+            processed_list.append(DetailedWordDto(
                 token['text'],
                 token['lemma'],
                 token['upos']
