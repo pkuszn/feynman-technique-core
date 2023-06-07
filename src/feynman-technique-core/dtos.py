@@ -63,6 +63,7 @@ class WordPresentationDto:
 
 @dataclass
 class DetailedWordDto:
+    id: int
     name: str
     lemma: str
     part_of_speech: int
@@ -77,4 +78,23 @@ class DetailedWordDto:
     
     @property
     def __str__(self):
-        return f"{self.name}, {self.lemma}, {self.part_of_speech}"
+        return f"{self.id}, {self.name}, {self.lemma}, {self.part_of_speech}"
+    
+#TODO: Think about better name
+@dataclass
+class InternalWordDto:
+    id: int
+    name: str
+
+    @property
+    def __dict__(self):
+        return asdict(self)
+    
+    @property
+    def json(self):
+        return dumps(self.__dict__)
+    
+    @property
+    def __str__(self):
+        return f"{self.id}, {self.name}"
+    

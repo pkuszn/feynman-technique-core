@@ -1,9 +1,9 @@
 from trankit import Pipeline
-from dtos import DetailedWordDto
+from dtos import DetailedWordDto, InternalWordDto
 
 pipeline = Pipeline(lang='polish', gpu=True, cache_dir='./cache')
 
-def process_part_of_speech(words: list):
+def process_part_of_speech(InternalWordDto: list):
     try:
         processed_list = []
         list = pipeline(words, is_sent=True)
