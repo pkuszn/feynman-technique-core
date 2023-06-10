@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -26,4 +26,8 @@ class Role(BaseModel):
     name: str
 
 class Words(BaseModel):
-    wordList: list
+    wordList: list[str]
+
+class DetailedWord(BaseModel):
+    source: str
+    words: list[str]

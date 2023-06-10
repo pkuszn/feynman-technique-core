@@ -1,4 +1,4 @@
-from dataclasses import dataclass, asdict, field
+from dataclasses import dataclass, asdict
 from json import dumps
 
 class Token:
@@ -21,7 +21,7 @@ class Token:
         return f"{self.internal_id}, {self.text}, {self.lemma}, {self.upos}, {self.head}, {self.deprel}, {self.status}, {self.feats}, {self.complex}, {self.root}"   
 
 @dataclass
-class QuestionDto:
+class QuestionResponse:
     id: int
     level: int
     sentence: str
@@ -34,12 +34,12 @@ class QuestionDto:
         return f"{self.id}, {self.level}, {self.sentence}, {self.parent_id}, {self.question}, {self.word_length}"
 
 @dataclass
-class ResponseDto:
-    questions: list
-    understood_sentences: list
+class AnalyzeResponse:
+    questions: list[QuestionResponse]
+    understood_sentences: list[str]
 
 @dataclass
-class WordPresentationDto:
+class WordPresentationResponse:
     id: int
     word: str
     part_of_speech: int
@@ -48,53 +48,14 @@ class WordPresentationDto:
     context: str
     link: str
 
-    @property
-    def __dict__(self):
-        return asdict(self)
-    
-    @property
-    def json(self):
-        return dumps(self.__dict__)
-    
-    @property
-    def __str__(self):
-        return f"{self.id}, {self.word}, {self.part_of_speech}, {self.part_of_speech_name}, {self.created_date}, {self.context}, {self.link}"
-
-
 @dataclass
-class DetailedWordDto:
-    id: int
+class DetailedWordKeyResponse:
     name: str
     lemma: str
-    part_of_speech: int
+    part_of_speech: str
 
-    @property
-    def __dict__(self):
-        return asdict(self)
     
-    @property
-    def json(self):
-        return dumps(self.__dict__)
-    
-    @property
-    def __str__(self):
-        return f"{self.id}, {self.name}, {self.lemma}, {self.part_of_speech}"
-    
-#TODO: Think about better name
 @dataclass
-class InternalWordDto:
-    id: int
-    name: str
-
-    @property
-    def __dict__(self):
-        return asdict(self)
-    
-    @property
-    def json(self):
-        return dumps(self.__dict__)
-    
-    @property
-    def __str__(self):
-        return f"{self.id}, {self.name}"
-    
+class DetailedWordResponse:
+    source: str
+    words: list[DetailedWordKeyResponse]
