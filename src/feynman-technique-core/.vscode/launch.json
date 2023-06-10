@@ -11,7 +11,8 @@
             "module": "uvicorn",
             "console": "externalTerminal",
             "args": [
-                "src.feynman-technique-core.app:app"
+                "app:app",
+                "--reload"
             ],
             "jinja": true,
             "justMyCode": true,
@@ -24,7 +25,8 @@
             "module": "uvicorn",
             "console": "externalTerminal",
             "args": [
-                "src.feynman-technique-core.app:app"
+                "app:app",
+                "--reload"
             ],
             "jinja": true,
             "justMyCode": true,
@@ -34,13 +36,23 @@
             "name": "edge-dev",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:8000"
+            "url": "http://localhost:8000/docs"
         },
         {
             "name": "edge-prod",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:8000"
+            "url": "http://localhost:8000/docs"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "run-application-dev",
+            "configurations": ["run-fastapi-ft-dev", "edge-dev"]
+        },
+        {
+            "name": "run-application-prod",
+            "configurations": ["run-fastapi-ft-prod", "edge-prod"]
         }
     ]
 }

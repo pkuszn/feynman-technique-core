@@ -1,4 +1,3 @@
-import os
 import yaml
 import pathlib
 from copy import deepcopy

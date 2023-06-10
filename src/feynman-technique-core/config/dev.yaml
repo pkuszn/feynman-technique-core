@@ -13,7 +13,7 @@ paths:
   log_filename: 'log'
 
 sql_alchemy:
-  database_uri: 'mysql+pymysql://root:Estonia1998#6@localhost/ft_backend_dev'
+  database_uri: 'mysql+pymysql://root:Estonia1998#5@localhost/ft_backend_dev'
   track_modifications: False
   cors_headers: 'Content-Type'
 

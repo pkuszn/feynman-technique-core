@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
+from json import dumps
 
 class Token:
     __slots__ = ["internal_id", "text", "lemma", "upos", "head", "deprel", "feats", "status", "complex", "root", "child"]
@@ -20,7 +21,7 @@ class Token:
         return f"{self.internal_id}, {self.text}, {self.lemma}, {self.upos}, {self.head}, {self.deprel}, {self.status}, {self.feats}, {self.complex}, {self.root}"   
 
 @dataclass
-class QuestionDto:
+class QuestionResponse:
     id: int
     level: int
     sentence: str
@@ -33,12 +34,12 @@ class QuestionDto:
         return f"{self.id}, {self.level}, {self.sentence}, {self.parent_id}, {self.question}, {self.word_length}"
 
 @dataclass
-class ResponseDto:
-    questions: list
-    understood_sentences: list
+class AnalyzeResponse:
+    questions: list[QuestionResponse]
+    understood_sentences: list[str]
 
 @dataclass
-class WordPresentationDto:
+class WordPresentationResponse:
     id: int
     word: str
     part_of_speech: int
@@ -48,7 +49,13 @@ class WordPresentationDto:
     link: str
 
 @dataclass
-class SpecifiedWordDto:
+class DetailedWordKeyResponse:
     name: str
     lemma: str
-    part_of_speech: int
+    part_of_speech: str
+
+    
+@dataclass
+class DetailedWordResponse:
+    source: str
+    words: list[DetailedWordKeyResponse]

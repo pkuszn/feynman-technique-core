@@ -1,18 +1,18 @@
 from trankit import Pipeline
-from dtos import SpecifiedWordDto
+from dtos import DetailedWordKeyResponse
 
 pipeline = Pipeline(lang='polish', gpu=True, cache_dir='./cache')
 
-def process_part_of_speech(words: list):
+def process_part_of_speech(words: list[DetailedWordKeyResponse]):
     try:
-        processed_list = []
+        detailed_words = []
         list = pipeline(words, is_sent=True)
         for token in list['tokens']:
-            processed_list.append(SpecifiedWordDto(
+            detailed_words.append(DetailedWordKeyResponse(
                 token['text'],
                 token['lemma'],
                 token['upos']
             ))
-        return processed_list
+        return detailed_words
     except Exception as e:
         print(e)
