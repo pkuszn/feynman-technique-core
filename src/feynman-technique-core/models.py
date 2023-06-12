@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import List
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -28,6 +28,38 @@ class Role(BaseModel):
 class Words(BaseModel):
     wordList: list[str]
 
-class DetailedWord(BaseModel):
+class DetailedWordRequest(BaseModel):
     source: str
     words: list[str]
+
+class AnalyzeSentenceRequest(BaseModel):
+    id: int
+    level: int
+    sentence: str
+    understood_words: list[str]
+
+class QuestionResponse(BaseModel):
+    id: int
+    level: int
+    sentence: str
+    parent_id: int
+    question: str
+    word_length: int
+    children: list
+
+class AnalyzeSentenceResponse(BaseModel):
+    questions: list[QuestionResponse]
+    understood_words: list[str]
+    
+    class Config:
+            validate_assignment = True
+        
+class DetailedWordKeyResponse(BaseModel):
+    name: str
+    lemma: str
+    part_of_speech: str
+
+class DetailedWordResponse(BaseModel):
+    source: str
+    words: list[DetailedWordKeyResponse]
+

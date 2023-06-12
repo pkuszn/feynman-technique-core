@@ -9,7 +9,7 @@ db = MySQLdb.connect(
     database = config['database']['name']
 )
 
-async def load_words():
+async def load_words() -> list[str]:
     cursor = db.cursor()
     cursor.execute("""SELECT word from word""")
     list = cursor.fetchall()
