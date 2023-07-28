@@ -2,7 +2,7 @@ database:
   host: 'localhost'
   user: 'root'
   password: 'Estonia1998#6'
-  name: 'ft_backend_dev'
+  name: 'ft_backend_dev_test'
   auth_plugin: 'mysql_native_password'
 
 logger:

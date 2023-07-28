@@ -43,7 +43,7 @@ async def analyze_part_of_speech_async(words: list[DetailedWordRequest]) -> list
     
     detailed_words = []
     for chunk in words:
-        detailed_word = DetailedWordResponse(chunk.source, process_part_of_speech(chunk.words))
+        detailed_word = DetailedWordResponse(source=chunk.source, words=process_part_of_speech(chunk.words))
         detailed_words.append(detailed_word)
     if len(detailed_word.words) <= 0:
         return status.HTTP_204_NO_CONTENT

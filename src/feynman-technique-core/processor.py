@@ -13,9 +13,9 @@ def process_part_of_speech(words: list[DetailedWordKeyResponse]) -> list[Detaile
         list = pipeline(words, is_sent=True)
         for token in list['tokens']:
             detailed_words.append(DetailedWordKeyResponse(
-                token['text'],
-                token['lemma'],
-                token['upos']
+                name=token['text'],
+                lemma=token['lemma'],
+                part_of_speech=token['upos']
             ))
         return detailed_words
     except Exception as e:
