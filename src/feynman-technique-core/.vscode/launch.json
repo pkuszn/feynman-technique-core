@@ -36,13 +36,13 @@
             "name": "edge-dev",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:8000/docs"
+            "url": "http://localhost:8200/docs"
         },
         {
             "name": "edge-prod",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:8000/docs"
+            "url": "http://localhost:8200/docs"
         }
     ],
     "compounds": [

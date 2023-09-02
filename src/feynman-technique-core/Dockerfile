@@ -11,7 +11,9 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy the content of the local src directory to the working directory
-COPY src/feynman-technique-core .
+COPY . .
+
+EXPOSE 8200
 
 # command to run on container start
 CMD [ "python", "-m", "uvicorn", "app:app", "--reload" ]
