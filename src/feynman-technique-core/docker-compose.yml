@@ -1,15 +1,15 @@
 version: "3.9"
 services:
-  feynman-technique-scraper:
+  feynman-technique-core:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: feynman-technique-core
     restart: always
     ports:
-      - '6000:6000'
+      - '8000:8000'
     expose:
-      - '6000'
+      - '8000'
     networks:
       - ft-network
     volumes:
