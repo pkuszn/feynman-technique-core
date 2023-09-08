@@ -1,7 +1,7 @@
 database:
   host: 'ft-db'
-  user: 'pkuszneruk'
-  password: 'p@VII&t6D;^24089=N3+Bf6kn=QqE;dg'
+  user: 'root'
+  password: 'root'
   name: 'ft-db'
   auth_plugin: 'mysql_native_password'
 
@@ -13,7 +13,7 @@ paths:
   log_filename: 'log'
 
 sql_alchemy:
-  database_uri: 'mysql+pymysql://pkuszneruk:p@VII&t6D;^24089=N3+Bf6kn=QqE;dg@ft-db/ft-db'
+  database_uri: 'mysql+pymysql://root:root@ft-db/ft-db'
   track_modifications: False
   cors_headers: 'Content-Type'
 
