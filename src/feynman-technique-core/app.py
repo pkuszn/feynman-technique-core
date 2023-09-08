@@ -3,8 +3,6 @@ import string
 import time
 import logging
 import configparser
-
-import uvicorn
 from models import DetailedWordRequest, DetailedWordResponse, AnalyzeSentenceRequest, AnalyzeSentenceResponse
 from fastapi import FastAPI, Request, status
 from db_connector import load_words
@@ -54,7 +52,7 @@ async def analyze_words_async() -> list:
     logger.info(', '.join([str(elem) for elem in words]))
     return words
 
-@app.post("/analyze/speeches", status_code=status.HTTP_201_CREATED)
+@app.post("/analyze/speeches", status_code=status.HTTP_200_OK)
 async def analyze_part_of_speech_async(words: list[DetailedWordRequest]) -> list[DetailedWordResponse]:
     logger.info("Preparing to analyze given words")
     if len(words) <= 0:
@@ -69,7 +67,7 @@ async def analyze_part_of_speech_async(words: list[DetailedWordRequest]) -> list
     
     return detailed_words
 
-@app.post("/analyze", status_code=status.HTTP_201_CREATED)
+@app.post("/analyze", status_code=status.HTTP_200_OK)
 async def analyze_sentences(analyze_request: AnalyzeSentenceRequest) -> AnalyzeSentenceResponse:
     try:
         if analyze_request == None:
