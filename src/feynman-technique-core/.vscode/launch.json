@@ -12,7 +12,9 @@
             "console": "externalTerminal",
             "args": [
                 "app:app",
-                "--reload"
+                "--reload",
+                "--port",
+                "8080"
             ],
             "jinja": true,
             "justMyCode": true,
@@ -26,7 +28,9 @@
             "console": "externalTerminal",
             "args": [
                 "app:app",
-                "--reload"
+                "--reload",
+                "--port",
+                "8080"
             ],
             "jinja": true,
             "justMyCode": true,
@@ -36,13 +40,13 @@
             "name": "edge-dev",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:8200/docs"
+            "url": "http://localhost:8080/docs"
         },
         {
             "name": "edge-prod",
             "type": "msedge",
             "request": "launch",
-            "url": "http://localhost:8200/docs"
+            "url": "http://localhost:8080/docs"
         }
     ],
     "compounds": [

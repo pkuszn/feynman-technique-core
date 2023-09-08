@@ -1,8 +1,8 @@
 database:
-  host: 'ft-db'
+  host: 'localhost'
   user: 'root'
   password: 'root'
-  name: 'ft-db'
+  name: 'ft_backend_dev'
   auth_plugin: 'mysql_native_password'
 
 logger:
@@ -13,7 +13,7 @@ paths:
   log_filename: 'log'
 
 sql_alchemy:
-  database_uri: 'mysql+pymysql://root:root@ft-db/ft-db'
+  database_uri: 'mysql+pymysql://root:root@localhost/ft_backend_dev'
   track_modifications: False
   cors_headers: 'Content-Type'
 

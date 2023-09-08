@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 # copy the content of the local src directory to the working directory
 COPY . .
 
-EXPOSE 8200
+EXPOSE 8080
 
 # command to run on container start
-CMD [ "python", "-m", "uvicorn", "app:app", "--reload" ]
+CMD [ "python", "-m", "uvicorn", "app:app", "--reload", "--port", "8080" ]
