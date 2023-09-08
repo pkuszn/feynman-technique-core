@@ -8,12 +8,12 @@ WORKDIR /code
 COPY requirements.txt .
 
 # install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # copy the content of the local src directory to the working directory
 COPY . .
 
-EXPOSE 8080
+EXPOSE 8200
 
 # command to run on container start
-CMD [ "python", "-m", "uvicorn", "app:app", "--reload", "--port", "8200" ]
+CMD [ "python", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8200" ]
