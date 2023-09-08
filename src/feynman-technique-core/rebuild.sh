@@ -1,0 +1,1 @@
+docker rm -f feynman-technique-core && docker rmi feynman-technique-core-feynman-technique-core:latest && git reset --hard && git.exe pull && dos2unix build.sh && chmod +x build.sh && ./build.sh

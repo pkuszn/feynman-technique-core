@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 8080
 
 # command to run on container start
-CMD [ "python", "-m", "uvicorn", "app:app", "--reload", "--port", "8080" ]
+CMD [ "python", "-m", "uvicorn", "app:app", "--reload", "--port", "8200" ]

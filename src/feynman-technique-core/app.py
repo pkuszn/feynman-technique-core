@@ -117,6 +117,3 @@ async def analyze_sentences(analyze_request: AnalyzeSentenceRequest) -> AnalyzeS
     except Exception as e:
         logger.exception(e)
         return status.HTTP_400_BAD_REQUEST
-    
-if __name__ == "__main__":
-    uvicorn.run(app, host='feynman-technique-core', port=APP_PORT, log_level="debug")
