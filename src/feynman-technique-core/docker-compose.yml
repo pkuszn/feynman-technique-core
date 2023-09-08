@@ -16,4 +16,4 @@ volumes:
   feynman-technique-core-data:
 networks:
     ft-network:
-        name: ft-network
+        external: true
