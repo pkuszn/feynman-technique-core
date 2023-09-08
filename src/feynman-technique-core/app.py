@@ -2,6 +2,9 @@ import random
 import string
 import time
 import logging
+import configparser
+
+import uvicorn
 from models import DetailedWordRequest, DetailedWordResponse, AnalyzeSentenceRequest, AnalyzeSentenceResponse
 from fastapi import FastAPI, Request, status
 from db_connector import load_words
@@ -12,6 +15,14 @@ from question_builder import create_questions
 
 logging.config.fileConfig("config/logging.conf", disable_existing_loggers=False)
 logger = logging.getLogger("ftcore")
+
+config = configparser.ConfigParser()
+config.read('./config.ini')
+
+APP_NAME = config['application']['appName']
+APP_VER = config['application']['version']
+APP_PORT = config['application']['port']
+APP_DESC = config['application']['description']
 
 app = FastAPI()
 
@@ -27,6 +38,14 @@ async def log_requests(request: Request, call_next):
     logger.info(f"rid={idem} completed_in={formated_process_time}ms status_code={response.status_code}")
 
     return response
+
+@app.get('/info')
+async def info(i: str):
+    return APP_NAME + ":" + APP_VER + ":" + APP_PORT + ":" + APP_DESC
+
+app.get("/test")
+async def test(data: str):
+    return {"data": data}
 
 @app.get("/analyze/words", status_code=status.HTTP_200_OK)
 async def analyze_words_async() -> list:
@@ -99,3 +118,5 @@ async def analyze_sentences(analyze_request: AnalyzeSentenceRequest) -> AnalyzeS
         logger.exception(e)
         return status.HTTP_400_BAD_REQUEST
     
+if __name__ == "__main__":
+    uvicorn.run(app, host='feynman-technique-core', port=APP_PORT, log_level="debug")
