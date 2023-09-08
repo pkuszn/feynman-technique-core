@@ -6,8 +6,6 @@ services:
       dockerfile: Dockerfile
     container_name: feynman-technique-core
     restart: always
-    depends_on:
-      - ft-db
     ports:
       - '8200:8000'
     networks:
@@ -18,4 +16,4 @@ volumes:
   feynman-technique-core-data:
 networks:
     ft-network:
-        name: ft_network
+        name: ft-network
