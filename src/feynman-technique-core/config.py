@@ -33,17 +33,13 @@ def load_config(mode="DEVELOPMENT"):
 
 def mask(load, parents, names):
     for parent in parents:
-
         for k, v in load[parent].items():
-            
             if len(names) > 1:
                 for name in names:
                     if k == name:
-                        load[parent][k] = '************'
-                        
+                        load[parent][k] = '************'  
             else:
                 if k == names:
                     load[parent][k] = '************'
-
     return deepcopy(load)
     
