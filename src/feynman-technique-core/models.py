@@ -28,7 +28,7 @@ class Role(BaseModel):
 class Words(BaseModel):
     wordList: list[str]
 
-class DetailedWordRequest(BaseModel):
+class WordRequest(BaseModel):
     source: str
     words: list[str]
 
@@ -54,12 +54,12 @@ class AnalyzeSentenceResponse(BaseModel):
     class Config:
             validate_assignment = True
         
-class DetailedWordKeyResponse(BaseModel):
+class TokenResponse(BaseModel):
     name: str
     lemma: str
     part_of_speech: str
 
-class DetailedWordResponse(BaseModel):
+class ScraperTokenResponse(BaseModel):
     source: str
-    words: list[DetailedWordKeyResponse]
+    words: list[TokenResponse]
 

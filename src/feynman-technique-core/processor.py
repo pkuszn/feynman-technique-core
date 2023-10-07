@@ -1,18 +1,18 @@
 import logging
 from trankit import Pipeline
 from dtos import Token
-from models import DetailedWordKeyResponse
+from models import TokenResponse
 from constants import DependencyParsingConst, PartOfSpeechConst, PointedVerbs
 
 pipeline = Pipeline(lang='polish', gpu=True, cache_dir='./cache')
 ftcore_logger = logging.getLogger("ftcore")
 
-def process_part_of_speech(words: list[DetailedWordKeyResponse]) -> list[DetailedWordKeyResponse]:
+def process_part_of_speech(words: list[str]) -> list[TokenResponse]:
     try:
         detailed_words = []
         list = pipeline(words, is_sent=True)
         for token in list['tokens']:
-            detailed_words.append(DetailedWordKeyResponse(
+            detailed_words.append(TokenResponse(
                 name=token['text'],
                 lemma=token['lemma'],
                 part_of_speech=token['upos']

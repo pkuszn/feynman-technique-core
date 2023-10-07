@@ -4,7 +4,7 @@ import string
 import time
 import logging
 import configparser
-from models import DetailedWordRequest, DetailedWordResponse, AnalyzeSentenceRequest, AnalyzeSentenceResponse
+from models import TokenResponse, WordRequest, ScraperTokenResponse, AnalyzeSentenceRequest, AnalyzeSentenceResponse
 from fastapi import FastAPI, Request, status
 from processor import process_part_of_speech
 from utils import auto_correct, correct_tokens, distinct_sentences, remove_response_duplicates
@@ -53,17 +53,27 @@ async def analyze_words_async() -> list:
     return words
 
 @app.post("/analyze/speeches", status_code=status.HTTP_200_OK)
-async def analyze_part_of_speech_async(words: list[DetailedWordRequest]) -> list[DetailedWordResponse]:
+async def analyze_speeches_async(words: list[WordRequest]) -> list[ScraperTokenResponse]:
     logger.info("Preparing to analyze given words")
     if len(words) <= 0:
         return status.HTTP_204_NO_CONTENT
     detailed_words = []
     for chunk in words:
-        detailed_word = DetailedWordResponse(source=chunk.source, words=process_part_of_speech(chunk.words))
+        detailed_word = ScraperTokenResponse(source=chunk.source, words=process_part_of_speech(chunk.words))
         detailed_words.append(detailed_word)
     if len(detailed_word.words) <= 0:
         return status.HTTP_204_NO_CONTENT
     return detailed_words
+
+@app.post('/analyze/speeches/text', status_code=status.HTTP_200_OK)
+async def analyze_speeches_raw_async(words: list[str]) -> list[TokenResponse]:
+    logger.info('Preparing to analyze given words')
+    if words == None or len(words) == 0:
+        return status.HTTP_204_NO_CONTENT
+    detailed_word_key_list = process_part_of_speech(words)
+    if detailed_word_key_list == None or len(detailed_word_key_list) == 0:
+        return status.HTTP_400_BAD_REQUEST
+    return detailed_word_key_list
 
 @app.post("/analyze", status_code=status.HTTP_200_OK)
 async def analyze_sentences(analyze_request: AnalyzeSentenceRequest) -> AnalyzeSentenceResponse:
