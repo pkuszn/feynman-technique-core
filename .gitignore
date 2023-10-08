@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # Trankit cache 
-src/feynman-technique-core/cache
+src/cache
+src/logs
