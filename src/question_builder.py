@@ -1,9 +1,21 @@
 from models import QuestionResponse
-from constants import PartOfSpeechEnum, NumberFeatureValueConst, AnimacyFeatureValueConst, GenderFeatureValueConst, UniversalFeaturesConst, part_of_speech_mapper
 from dtos import Token
 from models import AnalyzeSentenceRequest
+from constants import (
+    PartOfSpeechEnum, 
+    NumberFeatureValueConst, 
+    AnimacyFeatureValueConst, 
+    GenderFeatureValueConst, 
+    UniversalFeaturesConst, 
+    part_of_speech_mapper
+)
 
-def create_questions(responses: list[QuestionResponse], analyze_request: AnalyzeSentenceRequest, dtokens: list[Token], words: list[str]):
+def create_questions(
+        responses: list[QuestionResponse], 
+        analyze_request: AnalyzeSentenceRequest, 
+        dtokens: list[Token], 
+        words: list[str]) -> list[QuestionResponse]:
+    
     for token in dtokens:
         token.status = set_status(token, words)
         log_presence(token.status, token.lemma)
@@ -31,7 +43,11 @@ def create_questions(responses: list[QuestionResponse], analyze_request: Analyze
                 continue
             responses.append(response)
             
-def create_questions_text(responses: list[QuestionResponse], dtokens: list[Token], words: list[str]):
+def create_questions_text(
+        responses: list[QuestionResponse], 
+        dtokens: list[Token], 
+        words: list[str]) -> list[QuestionResponse]:
+     
      for token in dtokens:
         token.status = set_status(token, words)
         log_presence(token.status, token.lemma)

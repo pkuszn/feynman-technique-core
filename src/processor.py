@@ -2,7 +2,11 @@ import logging
 from trankit import Pipeline
 from dtos import Token
 from models import TokenResponse
-from constants import DependencyParsingConst, PartOfSpeechConst, PointedVerbs
+from constants import (
+    DependencyParsingConst, 
+    PartOfSpeechConst, 
+    PointedVerbs
+)
 
 pipeline = Pipeline(lang='polish', gpu=True, cache_dir='./cache')
 ftcore_logger = logging.getLogger("ftcore")

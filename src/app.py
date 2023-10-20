@@ -4,13 +4,30 @@ import string
 import time
 import logging
 import configparser
-from models import TokenResponse, WordRequest, ScraperTokenResponse, AnalyzeSentenceRequest, AnalyzeSentenceResponse
 from fastapi import FastAPI, Request, status
 from processor import process_part_of_speech
-from utils import auto_correct, correct_tokens, distinct_sentences, remove_response_duplicates
-from processor import try_process, create_dependencies
 from question_builder import create_questions
 from communication import get_words_async
+
+from processor import (
+    try_process, 
+    create_dependencies
+)
+
+from utils import (
+    auto_correct, 
+    correct_tokens, 
+    distinct_sentences, 
+    remove_response_duplicates
+)
+
+from models import (
+    TokenResponse, 
+    WordRequest, 
+    ScraperTokenResponse, 
+    AnalyzeSentenceRequest, 
+    AnalyzeSentenceResponse
+)
 
 logging.config.fileConfig("config/logging.conf", disable_existing_loggers=False)
 
